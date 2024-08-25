@@ -1,0 +1,16 @@
+<Window x:Class="Global_Goods.AddCategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Category" Height="250" Width="400">
+	<Grid Margin="10">
+		<StackPanel>
+			<TextBlock Text="Category Name:"/>
+			<TextBox x:Name="CategoryNameTextBox" Margin="0,0,0,10"/>
+
+			<TextBlock Text="Description:"/>
+			<TextBox x:Name="DescriptionTextBox" Margin="0,0,0,10"/>
+
+			<Button Content="Save" Click="SaveButton_Click" HorizontalAlignment="Right"/>
+		</StackPanel>
+	</Grid>
+</Window>

@@ -24,11 +24,11 @@ namespace Global_Goods.Migrations
 
             modelBuilder.Entity("Global_Goods.Models.Category", b =>
                 {
-                    b.Property<int>("CategoryID")
+                    b.Property<int?>("CategoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CategoryID"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -45,11 +45,11 @@ namespace Global_Goods.Migrations
 
             modelBuilder.Entity("Global_Goods.Models.Customer", b =>
                 {
-                    b.Property<int>("CustomerID")
+                    b.Property<int?>("CustomerID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CustomerID"));
 
                     b.Property<string>("Address")
                         .IsRequired()

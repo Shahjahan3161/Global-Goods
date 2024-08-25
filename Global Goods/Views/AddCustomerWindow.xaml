@@ -1,0 +1,28 @@
+<Window x:Class="Global_Goods.AddCustomerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Customer" Height="400" Width="400">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Customer Name:"/>
+            <TextBox x:Name="CustomerNameTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Contact Name:"/>
+            <TextBox x:Name="ContactNameTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Address:"/>
+            <TextBox x:Name="AddressTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="City:"/>
+            <TextBox x:Name="CityTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Postal Code:"/>
+            <TextBox x:Name="PostalCodeTextBox" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Country:"/>
+            <TextBox x:Name="CountryTextBox" Margin="0,0,0,10"/>
+
+            <Button Content="Save" Click="SaveButton_Click" HorizontalAlignment="Right"/>
+        </StackPanel>
+    </Grid>
+</Window>

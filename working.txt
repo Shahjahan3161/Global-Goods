@@ -1,0 +1,9 @@
+Product -- add with all fields not null 
+
+Categories --
+
+Customer --
+
+Orders -- add 
+
+Order_details --

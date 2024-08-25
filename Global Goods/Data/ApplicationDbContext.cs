@@ -35,6 +35,13 @@ namespace Global_Goods.Data
                 .HasOne(op => op.Product)
                 .WithMany(p => p.Order_Details)
                 .HasForeignKey(op => op.ProductID);
+
+            modelBuilder.Entity<Category>()
+           .HasKey(c => c.CategoryID); // Primary key
+
+            modelBuilder.Entity<Category>()
+                .Property(c => c.CategoryID)
+                .ValueGeneratedOnAdd(); // Auto-increment
         }
     }
 }
