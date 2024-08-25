@@ -21,22 +21,41 @@ namespace Global_Goods
 
         private void LoadData()
         {
+
+
             // Load Orders
-            OrdersListView.ItemsSource = _context.Orders
-            .Include(o => o.Customer)        // Eager loading Customer data
-            .Include(o => o.Shipper)         // Eager loading Shipper data
-            .Select(o => new                 // Projecting data to a new anonymous type
-             {
-                 o.OrderID,                   // Order ID
-                 o.OrderDate,                 // Order Date
-                 CustomerName = o.Customer.CustomerName,    // Customer's name
-                 ShipperName = o.Shipper.ShipperName       // Shipper's name
-             })
-             .ToList();
+            //OrdersListView.ItemsSource = _context.Orders
+            //.Include(o => o.Customer)        // Eager loading Customer data
+            //.Include(o => o.Shipper)         // Eager loading Shipper data
+            //.Select(o => new                 // Projecting data to a new anonymous type
+            // {
+            //     o.OrderID,                   // Order ID
+            //     o.OrderDate,                 // Order Date
+            //     CustomerName = o.Customer.CustomerName,    // Customer's name
+            //     ShipperName = o.Shipper.ShipperName       // Shipper's name
+            // })
+            // .ToList();
+
+     var ordersWithDetails = _context.Orders
+    .Include(o => o.Customer)  // Eager loading Customer data
+    .Include(o => o.Shipper)   // Eager loading Shipper data
+    .Select(o => new OrderViewModel
+    {
+        OrderID = o.OrderID,
+        OrderDate = o.OrderDate,
+        CustomerName = o.Customer != null ? o.Customer.CustomerName : "No Customer",
+        ShipperName = o.Shipper != null ? o.Shipper.ShipperName : "No Shipper",
+        OriginalOrder = o  // Preserve the original Order object
+    })
+    .ToList();
+
+OrdersListView.ItemsSource = ordersWithDetails;
+
+
 
 
             // Load Products
-            ProductsListView.ItemsSource = _context.Products
+            var products = _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.Supplier)
                 .Select(p => new
@@ -48,6 +67,8 @@ namespace Global_Goods
                     p.Price
                 })
                 .ToList();
+
+            ProductsListView.ItemsSource = products;
 
             // Load Categories
             CategoriesListView.ItemsSource = _context.Categories
@@ -137,9 +158,11 @@ namespace Global_Goods
 
         private void EditOrders_Click(object sender, RoutedEventArgs e)
         {
-            if (OrdersListView.SelectedItem is Order selectedOrder)
+            if (OrdersListView.SelectedItem is OrderViewModel selectedOrderViewModel)  // Use OrderViewModel instead of Order
             {
-                var editOrderWindow = new AddOrderWindow(_context, selectedOrder);
+                var originalOrder = selectedOrderViewModel.OriginalOrder;  // Get the original Order object
+                var editOrderWindow = new AddOrderWindow(_context, originalOrder);
+
                 if (editOrderWindow.ShowDialog() == true)
                 {
                     LoadData();  // Reload Orders after editing
@@ -150,6 +173,9 @@ namespace Global_Goods
                 MessageBox.Show("Please select an order to edit.", "Edit Order", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+
+
 
         private void DeleteOrder_Click(object sender, RoutedEventArgs e)
         {

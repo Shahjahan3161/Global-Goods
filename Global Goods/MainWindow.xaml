@@ -23,7 +23,7 @@
                         <Button Content="Delete Order" Width="150" Margin="10" Click="DeleteOrder_Click"/>
                     </StackPanel>
 
-                    <ListView x:Name="OrdersListView" Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
+                    <!--<ListView x:Name="OrdersListView" Grid.Row="1" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedOrder}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrderID}" Width="100"/>
@@ -32,7 +32,22 @@
                                 <GridViewColumn Header="Shipper" DisplayMemberBinding="{Binding ShipperName}" Width="200"/>
                             </GridView>
                         </ListView.View>
+                    </ListView>-->
+                    <ListView x:Name="OrdersListView" Grid.Row="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding OrderID}" Width="100"/>
+                                <GridViewColumn Header="Order Date" DisplayMemberBinding="{Binding OrderDate}" Width="150"/>
+                                <GridViewColumn Header="Customer Name" DisplayMemberBinding="{Binding CustomerName}" Width="200"/>
+                                <GridViewColumn Header="Shipper Name" DisplayMemberBinding="{Binding ShipperName}" Width="200"/>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
+
+
+
+
+
                 </Grid>
             </TabItem>
 
@@ -50,17 +65,18 @@
                         <Button Content="Delete Product" Width="150" Margin="10" Click="DeleteProduct_Click"/>
                     </StackPanel>
 
-                    <ListView x:Name="ProductsListView" Grid.Row="1" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+                    <ListView x:Name="ProductsListView" Grid.Row="1" SelectedItem="{Binding SelectedProduct}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductID}" Width="100"/>
                                 <GridViewColumn Header="Product Name" DisplayMemberBinding="{Binding ProductName}" Width="200"/>
                                 <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="100"/>
-                                <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category.CategoryName}" Width="200"/>
-                                <!-- Add other columns as necessary -->
+                                <GridViewColumn Header="Category" DisplayMemberBinding="{Binding CategoryName}" Width="200"/>
+                                <GridViewColumn Header="Supplier" DisplayMemberBinding="{Binding SupplierName}" Width="200"/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+
                 </Grid>
             </TabItem>
 
